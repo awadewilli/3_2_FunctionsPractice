@@ -60,7 +60,7 @@ console.assert(isVowel('u') === true, 'Wrong');
 function rovarspraket(phrase){
 var newPhrase = '';
 
-var consonant = 'bcdfghjklmnpqrstvwxyz';
+var consonant =new RegExp('bcdfghjklmnpqrstvwxyz','i');
 
 characters = phrase.split("");
 for (i=0; i < phrase.length; i++)
@@ -76,7 +76,7 @@ for (i=0; i < phrase.length; i++)
 return newPhrase;    //...
 }
 console.log(rovarspraket('waffles'));
-
+console.assert(rovarspraket('waffles')=='wowafoffoflolesos');
 // ---------------------
 // Define a function sum() and a function multiply() that sums and multiplies (respectively) all the numbers in an array of numbers. For example, sum([1,2,3,4]) should return 10, and multiply([1,2,3,4]) should return 24.
 // ---------------------
@@ -157,16 +157,14 @@ function filterLongWords(words, i){
     "use strict";
     for (var a=0; a<words.length;a++){
       if (words[a].length>i){
-        approvedWords.push(words[a]);
+        approvedWords.push(words[a]);}
     }
-    }
-  console.log(approvedWords);
-  return approvedWords;
+    return approvedWords;
       }
-
+console.log(filterLongWords(['turnip','frog','cat','gallop','pancake'],4));
 
 //Assert not working but the function is returning the correct values
-console.assert(filterLongWords(['turnip','frog','cat','gallop','pancake'],4) == ["turnip","gallop","pancake"], 'wrong');
+console.assert(filterLongWords(['turnip','frog','cat','gallop','pancake'],4) == ['turnip','gallop','pancake'], 'wrong');
 
 // ---------------------
 // Write a function charFreq() that takes a string and builds a frequency listing of the characters contained in it. Represent the frequency listing as a Javascript object. Try it with something like charFreq("abbabcbdbabdbdbabababcbcbab").
@@ -174,5 +172,17 @@ console.assert(filterLongWords(['turnip','frog','cat','gallop','pancake'],4) == 
 
 function charFreq(string){
     "use strict";
+        var freq = {};
+        for (var i=0; i<string.length;i++) {
+            var character = string.charAt(i);
+            if (freq[character]) {
+               freq[character]++;
+            } else {
+               freq[character] = 1;
+            }
+        }
+
+        return freq;
+    }
+console.log(charFreq('abbabcbdbabdbdbabababcbcbab'));
     //...
-}
